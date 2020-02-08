@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Static Template</title>
+    <meta charset="UTF-8" />
+    <title>Un premier jeu Phaser 3.0</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
-    <h1>This is a static template, there is no bundler or bundling involved!</h1>
+    <script type="text/javascript">
+      var config = {
+        type: Phaser.AUTO, //type de jeu
+        width: 1200, //dimensions de la fenêtre
+        height: 600,
+        scene: {
+          //décrit les noms de fcts de préchargement,chargement, mise à jour
+          preload: preload,
+          create: create, // ajouur d"un commentaire
+          update: update
+        },
+        physics: {
+          default: "arcade",
+          arcade: {
+            gravity: { y: 300 }, //gravité verticale de 300
+            debug: false
+          }
+        }
+      }; // ; c'est la fin de ligne ou instruction
+
+      function preload() {
+        this.load.image("sky", "sky.png"); //charge l'image sky.pnj du répertoire assets
+        this.load.image("ground", "assets/platform.png");
+        this.load.image("star", "assets/star.png");
+        this.load.image("bomb", "assets/bomb.png");
+        this.load.spritesheet("dude", "assets/dude.png", {
+          frameWidth: 32,
+          frameHeight: 48
+        });
+      }
+
+      function create() {
+        this.add.image(400, 300, "sky");
+      }
+
+      function update() {}
+
+      var game = new Phaser.Game(config); //nouvel objet décrivant un jeu
+    </script>
   </body>
 </html>
